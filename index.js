@@ -13,7 +13,7 @@ const httpClockifyOptions = {
   }
 };
 
-cron.schedule('* 9-12,13-17 * * *', () => {
+cron.schedule('*/5 9-12,13-17 * * *', () => {
 
   const req = https.request(httpClockifyOptions, res => {
   	if (res.headers['content-length'] === '0') {
