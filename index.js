@@ -1,6 +1,6 @@
-import { request } from "https";
-import { notify } from "node-notifier";
-import { schedule } from "node-cron";
+const https = require('https');
+const notifier = require('node-notifier');
+const cron = require('node-cron');
 
 require("dotenv").config();
 
@@ -15,10 +15,10 @@ const httpClockifyOptions = {
   }
 };
 
-schedule("*/5 9-12,13-17 * * MON-FRI", () => {
-  const req = request(httpClockifyOptions, res => {
+cron.schedule("*/5 9-12,13-17 * * MON-FRI", () => {
+  const req = https.request(httpClockifyOptions, res => {
     if (res.headers["content-length"] === "0") {
-      notify({
+      notifier.notify({
         title: "Clockify Notifier",
         message: "Remember of clockify your time!",
         wait: true
