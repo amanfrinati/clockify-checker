@@ -15,7 +15,7 @@ const httpClockifyOptions = {
   }
 };
 
-cron.schedule("*/5 9-12,13-17 * * MON-FRI", () => {
+cron.schedule("*/5 9-12,14-17 * * MON-FRI", () => {
   const req = https.request(httpClockifyOptions, res => {
     if (res.headers["content-length"] === "0") {
       notifier.notify({
